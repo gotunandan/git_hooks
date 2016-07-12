@@ -9,5 +9,5 @@ pre-push:
  - does not let allow a push from master
 
 usage:
-cp <hook_filename> <destination_repo_path>/.git/hooks/
+cp \<hook_filename\> \<destination_repo_path\>/.git/hooks/
 
