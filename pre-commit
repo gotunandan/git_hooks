@@ -1,0 +1,18 @@
+#!/bin/bash
+
+branch=`git symbolic-ref HEAD`
+if [ "${branch}" = "refs/heads/master" ]; then
+  echo "Direct commits to the branch master are not allowed"
+  exit 1
+fi
+
+op=`find . -name "*.rb" -exec ruby -c {} \; 2>&1 | grep -v "Syntax OK" 2>&1`
+echo "OP IS --- $op"
+if [[ "$op" == "" ]]
+then
+  echo "No syntax errors found, starting to commit"
+  exit 0
+else
+  echo "Syntax error found, will not COMMIT"
+  exit 1
+fi
